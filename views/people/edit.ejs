@@ -1,0 +1,9 @@
+<h1>Edit <%= person.name %></h1>
+
+<form action="/people/<%= person.id %>" method="POST">
+	<input type="text" name="name" placeholder="Name" value="<%= person.name %>">
+	<input type="text" name="age" placeholder="Age" value="<%= person.age %>">
+	<input type="text" name="email" placeholder="Email" value="<%= person.email %>">
+	<input type="text" name="phone" placeholder="Phone" value="<%= person.phone %>">
+	<input type="submit">
+</form>

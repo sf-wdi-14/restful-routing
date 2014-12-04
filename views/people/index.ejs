@@ -1,0 +1,9 @@
+<h1>All people</h1>
+
+<ul>
+	<% for (var i = 0; i < people.length; i++) { %>
+		<li><a href="/people/<%= people[i].id %>"><%= people[i].name %></a></li>
+	<% } %>
+</ul>
+
+<a href="/people/new">New person</a>
