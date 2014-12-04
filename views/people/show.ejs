@@ -7,3 +7,6 @@
 </ul>
 
 <a href="/people/<%= person.id %>/edit">Edit</a>
+<form method="POST" action="/people/<%= person.id %>?_method=DELETE">
+	<input type="submit" value="Delete">
+</form>

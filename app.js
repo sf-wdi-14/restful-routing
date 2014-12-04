@@ -1,11 +1,13 @@
 // Get started with Express
 var express = require('express');
+var methodOverride = require('method-override');
 var app = express();
 var db = require('./db.js');
 var bodyParser = require('body-parser');
 
 // Set EJS, view engine and body parser
 app.set('view engine', 'ejs');
+app.use(methodOverride('_method'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 
@@ -65,7 +67,7 @@ app.get('/people/:id/edit', function(req, res) {
 	});
 });
 
-app.post('/people/:id', function(req, res) {
+app.patch('/people/:id', function(req, res) {
 	var params = [
 		req.body.name,
 		req.body.phone,
@@ -77,6 +79,14 @@ app.post('/people/:id', function(req, res) {
 	db.query("UPDATE people SET name = $1, phone = $2, age = $3, email = $4 WHERE id = $5", params, function(err, dbRes) {
 		if (!err) {
 			res.redirect('/people/' + req.params.id);
+		}
+	});
+});
+
+app.delete('/people/:id', function(req, res) {
+	db.query("DELETE FROM people WHERE id = $1", [req.params.id], function(err, dbRes) {
+		if(!err) {
+			res.redirect('/');
 		}
 	});
 });
